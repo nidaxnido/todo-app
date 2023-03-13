@@ -24,7 +24,16 @@ export default function Home() {
   const divider = useColorModeValue("light.paleGrayBlue", "dark.veryGray2")
   const footer = useColorModeValue("light.darkGrayBlue", "dark.darkGrayBlue")
   const footerHover = useColorModeValue("light.blackGrayBlue", "dark.grayBlueHover")
-
+  const initial = [
+    {
+      todo:"Complete onli Javascript course", status:false
+    },
+    {todo:"Jog around the park 3x", status:true},
+    {todo:"10 minutes meditation", status:true},
+    {todo:"Read for 1 hour", status:true},
+    {todo:"Pick up groceries", status:true},
+    {todo:"Complete Todo App on Frontend Mentor", status:true},
+  ]
   const [todos, setTodos] = useState<note[]>([]);
   const [tugas, setTugas] = useState("");
   const taskLeft = todos.filter(item=>{return item.status}).length
@@ -32,7 +41,7 @@ export default function Home() {
 
   useEffect(() => {
       const stored = localStorage.getItem("todos");
-      setTodos(stored ? JSON.parse(stored) : []);
+      setTodos(stored ? JSON.parse(stored) : initial);
   }, []);
 
   useEffect(() => {
