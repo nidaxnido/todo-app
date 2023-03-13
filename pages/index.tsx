@@ -24,6 +24,7 @@ export default function Home() {
   const divider = useColorModeValue("light.paleGrayBlue", "dark.veryGray2")
   const footer = useColorModeValue("light.darkGrayBlue", "dark.darkGrayBlue")
   const footerHover = useColorModeValue("light.blackGrayBlue", "dark.grayBlueHover")
+  const body = useColorModeValue("hsl(236, 33%, 92%)","hsl(235, 21%, 11%)")
   const initial = [
     {
       todo:"Complete onli Javascript course", status:false
@@ -41,11 +42,12 @@ export default function Home() {
 
   useEffect(() => {
       const stored = localStorage.getItem("todos");
-      setTodos(stored ? JSON.parse(stored) : initial);
+      setTodos(stored ? JSON.parse(stored) : []);
+      console.log(todos)
   }, []);
 
   useEffect(() => {
-      if(todos.length === 0) return
+      if(todos.length === 0) return 
       localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
@@ -84,8 +86,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
-        <Box w="100vw" h="100vh" bg={back} position="relative" className={josef.className} fontSize="18px">
+      <main style={{backgroundColor:body}}>
+        
+        <Box w="100vw" h="100%" minH="100vh" bg={back} position="relative" className={josef.className} fontSize="18px">
           {
             colorMode == 'dark'?
               isMobile?
@@ -98,6 +101,7 @@ export default function Home() {
                 :
                 <Image src="/images/bg-desktop-light.jpg" alt="header" w="100%" />
           }
+          {/* <Flex bg={back} flexDir="column" alignContent="stretch" flex="1 1 auto" >dwedq</Flex> */}
           <VStack w="90%" maxW="600px" color="white" 
                   position="absolute"  left="50%" ml={{base:"-45%",md:"-300px"}} 
                   top="0" mt={{base:"30px",lg:"60px",xl:"100px"}}  >
@@ -135,12 +139,12 @@ export default function Home() {
                     }
                 }).map((item, idx)=> {
                   return (
-                    <Reorder.Item key={item.todo} value={item} style={{width:"100%"}}>
+                    <Reorder.Item key={idx} value={item} style={{width:"100%"}}>
                     <Flex bg={bg} w="100%" p="15px" cursor="pointer"
                           borderBottom="1px solid" borderBottomColor={divider}
                           borderTopLeftRadius="5px" borderTopRightRadius="5px"
                           className={styles.parent}
-                           key={item.todo}
+                           key={idx}
                      >
                       <Checkbox variant="circular" 
                                size="lg" mr="10px" ml="20px"
@@ -204,7 +208,7 @@ export default function Home() {
 
               </Flex>
             }
-            <Text textAlign="center" mt="40px !important" color={footer}>Drag and drop to reorder list</Text>
+            <Text textAlign="center" my="40px !important" color={footer}>Drag and drop to reorder list</Text>
           </VStack>
               
 
@@ -212,7 +216,7 @@ export default function Home() {
           
           
         </Box>
-      
+        </main>
     </>
   )
 }
