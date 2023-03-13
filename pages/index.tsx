@@ -107,7 +107,7 @@ export default function Home() {
                 <Image  src={colorMode == "dark"? "/images/icon-sun.svg":"/images/icon-moon.svg"} />
               </Button>
             </Flex>
-            <Flex bg={bg} w="100%" h="60px" borderRadius="5px">
+            <Flex bg={bg} w="100%" p="15px" borderRadius="5px">
                 <Checkbox variant="circular" colorScheme="red" size="lg" mr="10px" ml="20px" disabled></Checkbox>
                 <Input variant="ghost" 
                       placeholder='Create a new to do' 
