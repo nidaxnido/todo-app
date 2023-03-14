@@ -2,7 +2,7 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { extendTheme, ChakraProvider } from '@chakra-ui/react'
 import { checkboxTheme } from '@/components/Checkbox'
-import { mode } from '@chakra-ui/theme-tools'
+import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools'
 
 const theme = extendTheme({
   colors:{
@@ -35,7 +35,7 @@ const theme = extendTheme({
     xl:"1025px"
   },
   styles:{
-    global:(props) => ({
+    global:(props:StyleFunctionProps) => ({
       body:{
         bg: mode("hsl(236, 33%, 92%)","hsl(235, 21%, 11%)")(props),
       }
