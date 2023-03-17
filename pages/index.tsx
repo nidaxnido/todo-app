@@ -42,7 +42,7 @@ export default function Home() {
 
   useEffect(() => {
       const stored = localStorage.getItem("todos");
-      setTodos(stored ? JSON.parse(stored) : []);
+      setTodos(stored ? JSON.parse(stored) : initial);
       console.log(todos)
   }, []);
 
@@ -208,7 +208,8 @@ export default function Home() {
 
               </Flex>
             }
-            <Text textAlign="center" my="40px !important" color={footer}>Drag and drop to reorder list</Text>
+            {todos.length && 
+            <Text textAlign="center" my="40px !important" color={footer}>Drag and drop to reorder list</Text>}
           </VStack>
               
 
